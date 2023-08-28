@@ -1,0 +1,69 @@
+Las clases se incorporaron a js en 2015, se trata de una mejora de la sintaxis sobre la herencia basada en js. Mejora solamente la forma de entenderlo y escribirlo, pero su funcionamiento es igual que el de prototipos.
+
+Clases:
+Una clase es una función especial que envuelve a los objetos:
+Declaración de clase:
+
+class Papel{
+    constructor(p1,p2){}
+}
+
+Expresión de clase:
+Anonima --- La clase toma el nombre de la variable en la que se almacena
+let Papel = class {
+    constructor(p1,p2){}
+}
+
+nombrada --- La clase toma el nombre de MiPapel
+let Papel = class MiPapel {
+    constructor(p1,p2){}
+}
+
+
+Una clase, no es un objeto en si, es simplemente un molde para los objetos. Todos los objetos que se deriven de la clase, tomarán sus propiedades y mmétodos
+
+Toda clase solo debe tener un constructor. Si tiene más de uno, el sistema genera error, si no tiene, el sistema genera uno por defecto.
+
+constructor(propiedad){
+    this.propiedad = propiedad;
+}
+
+Subcalses:
+Es una clase que hereda métodos y propiedas de una clase:
+
+class Deportista{
+    constructor(nombre,edad){
+        this.nombre = nombre;
+        this.edad = edad
+    }
+}
+
+class Futbolista extends Deportista{
+    constructor(nombre,edad,posicion){
+        super(nombre,edad);
+        this.posicion = posicion
+    }
+}
+
+**No necesitamos volver a definir propiedades que ya existen en una clase padre, si llamamos al método super(); hacemos referencia a esas propiedades.
+
+get --- se usa para obtener el valor de una propiedad
+set --- se usa para establecer el valor de una propiedad por fuera de su clase.
+
+class Futbolista extends Deportista{
+    constructor(nombre,edad,posicion){
+        super(nombre,edad);
+        this._posicion = posicion
+    }
+
+    get posicion(){
+        return this._posicion;
+    }
+
+    set posicion(nuevaPosicion){
+        this._posicion = nuevaPosicion;
+    }
+
+}
+
+El guipo _ que precede al nombre de la propiedad, es una convencion que indica que esa propiedad no debería modificarse directamente, si no solo usando su respectivo metodo set
